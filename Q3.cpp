@@ -46,13 +46,29 @@ class Student
     }
 };
 
+void insertObj(Student s[],Student s1, int index)
+{
+    int i = 5;
+    while(i>=0)
+    {
+        s[i+1] = s[i];
+        i--;
+    }
+    s[index] = s1;
+}
+
+
 int main()
 {
-    Student s[5];
+    Student s[10];
     for(int i = 0; i<5; i++)
     {
         cout<<"Enter details of student "<<i+1<<":"<<endl;
         s[i].setDetails();
+    }
+    for(int i = 0; i<5; i++)
+    {
+        s[i].getDetails();
     }
 
     cout<<endl;
@@ -66,6 +82,19 @@ int main()
         {
             s[i].getDetails();
         }
+    }
+
+    int index;
+    cout<<endl<<"Enter the index at which you want to insert the new record"<<endl;
+    cin>>index;
+    Student s1;
+    s1.setDetails();
+
+    insertObj(s,s1,index);
+    cout<<endl;
+    for(int i = 0; i<6; i++)
+    {
+        s[i].getDetails();
     }
 
     return 0;

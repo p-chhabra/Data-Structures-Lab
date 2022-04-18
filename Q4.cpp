@@ -29,7 +29,6 @@ Node *  takeInput()
     Node * head = NULL;
     Node * tail = NULL;
     int data;
-    cout<<"Enter the first Element"<<endl;
     cin>>data;
     while(data != -1)
     {
@@ -106,18 +105,55 @@ Node * insertNode(Node * head, int index, int data)
     }
     return head;
 }
+ void controls(Node * head)
+ {
+     char x;
+     while(x != 'e')
+     {
+     cout<<"Enter 'i' to insert a new Node || Enter 'd' to delete a Node || Enter 'e' to exit"<<endl;
+     cin>>x;
+     switch(x)
+     {
+         case 'i':
+             {
+                 int index, data;
+                 cout<<"Enter the index at which you want to insert the Node"<<endl;
+                 cin>>index;
+                 cout<<"Enter value: "<<endl;
+                 cin>>data;
+                 insertNode(head, index, data);
+                 printNodes(head);
+                 break;
+             }
+
+             case 'd':
+             {
+                 int index;
+                 cout<<"Enter the index from which you want to delete the Node"<<endl;
+                 cin>>index;
+                 deleteNode(head, index);
+                 printNodes(head);
+                 break;
+             }
+
+             case 'e':
+                break;
+
+             default:
+                {
+                cout<<"Wrong character entered"<<endl;
+                }
+
+     }
+     }
+ }
 
 int main()
 {
+    cout<<"--Enter the Linked List--"<<endl;
     Node * head = takeInput();
     cout<<endl;
-    printNodes(head);
-    head = insertNode(head,3,12);
-    cout<<endl;
-    printNodes(head);
-    head = deleteNode(head,2);
-    cout<<endl;
-    printNodes(head);
+    controls(head);
 
     return 0;
 }

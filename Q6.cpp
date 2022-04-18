@@ -68,6 +68,14 @@ public:
     {
         return size;
     }
+    void print()
+    {
+        for(int i = firstIndex; i < nextIndex; i++)
+        {
+            cout<<arr[i]<<" ";
+        }
+        cout<<endl;
+    }
 };
 
 
@@ -147,11 +155,45 @@ class QueueLL
 int main()
 {
     Queue q(5);
-    q.enqueue(3);
-    q.enqueue(5);
-    q.enqueue(6);
-    q.dequeue();
-    cout<<q.front();
+    char x;
+    while(x != 'e')
+    {
+    cout<<"Enter 'i' to push an element || Enter 'd' to pop an element || Press 'p' to print Queue ||Enter 'e' to exit"<<endl;
+    cin>>x;
+    switch(x)
+    {
+        case 'i':
+        {
+            int element;
+            cout<<"Enter element to be inserted"<<endl;
+            cin>>element;
+            q.enqueue(element);
+            break;
+        }
 
+        case 'd':
+        {
+            q.dequeue();
+            break;
+        }
+
+        case 'e':
+        {
+            break;
+        }
+
+        case 'p':
+            {
+                q.print();
+                break;
+            }
+
+        default:
+            {
+                cout<<"Wrong Character Entered"<<endl;
+                break;
+            }
+    }
+    }
     return 0;
 }

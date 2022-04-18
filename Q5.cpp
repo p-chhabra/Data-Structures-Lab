@@ -1,17 +1,18 @@
 #include<bits/stdc++.h>
 using namespace std;
 
+template<typename T>
 class Stack
 {
 public:
     int capacity;
     int nextIndex;
-    int * arr;
+    T * arr;
 
     Stack(int capacity)
     {
         this->capacity = capacity;
-        arr = new int[capacity];
+        arr = new T[capacity];
         nextIndex = 0;
     }
 
@@ -20,7 +21,7 @@ public:
         if(capacity == nextIndex)
         {
             capacity = capacity*2;
-            int * newArr = new int[capacity];
+            T * newArr = new T[capacity];
             for(int i = 0; i<capacity/2; i++)
             {
                 newArr[i] = arr[i];
@@ -50,19 +51,42 @@ public:
     {
         return nextIndex == 0;
     }
-    int top()
+    T top()
     {
         return arr[nextIndex-1];
     }
 };
 
+void Postfix(char *a)
+{    Stack<char> s(5);
+    char output[50],t;
+    for(int i=0;a[i]!='\0';i++)
+    {   char ch = a[i];
+        switch(ch)
+        {
+        case '^':
+        case '-':
+        case '+':
+        case '/':
+        case '*':   s.push(ch);
+                    break;
+        case ')': t=s.top();
+                    s.pop();
+                   cout<<t;
+                    break;
+        }
+        if (isalpha(ch))
+            cout<<ch;
+    }
+}
+
 int main()
 {
-    Stack s(4);
-    s.push(5);
-    s.push(3);
-    s.push(7);
-    s.push(1);
-    cout<<s.top();
+    cout<<"Enter a infix expression: "<<endl;
+    char input[100];
+    cin>>input;
+    cout<<endl<<"Postfix expression: "<<endl;
+    Postfix(input);
+    cout<<endl;
     return 0;
 }
